@@ -1,0 +1,1 @@
+export const YT_LOGO = "https://images.t3n.de/news/wp-content/uploads/2017/08/new-youtube-logo-2.jpg?class=hero"
