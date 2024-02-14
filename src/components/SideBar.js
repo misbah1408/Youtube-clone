@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux'
 import {HOME_URL, YT_SHORTS, YT_SUBS} from './utils/Constants'
 import React from 'react'
+import SecondarySideBar from './SecondarySideBar';
 
 const SideBar = () => {
   const isMenuOpen = useSelector((store)=>store.app.isMenuOpen);
-  if(!isMenuOpen) return null;
+  if(!isMenuOpen) return <SecondarySideBar/> ;
   return (
     <div className='w-60 px-7 flex flex-col gap-5'>
       <ul className='py-5 flex flex-col gap-4 leading-[1.5rem] border-b-2'>

@@ -16,8 +16,19 @@ const VideoContainer = () => {
     }
     if (!videos) return null;
   return (
-    <div>
-      <VideoCard info={videos[4]} />
+    <div className='flex flex-wrap'>
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
+      {videos?.map((video)=> <VideoCard key={video?.id} info={video} />)}
     </div>
   )
 }

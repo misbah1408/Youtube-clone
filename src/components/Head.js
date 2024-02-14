@@ -9,13 +9,13 @@ const Head = () => {
     dispatch(toggleMenu())
   }
   return (
-    <div className="h-14 flex justify-between items-center">
+    <div className="bg-white h-14 flex justify-between items-center">
       <div className="flex ml-8 items-center gap-5">
         <span>
           <i onClick={handleToggle} className="fa-solid fa-bars text-xl cursor-pointer"></i>
         </span>
-        <span className="relative">
-          <img className="mix-blend-color-burn h-14" src={YT_LOGO} alt="" />
+        <span className="relative z-10">
+          <img className="mix-blend-color-burn h-14 " src={YT_LOGO} alt="" />
           <sub className="absolute mb-10 ml-[100px] ">IN</sub>
         </span>
       </div>
