@@ -3,7 +3,6 @@ import { DUMMY_USER } from "./utils/Constants";
 
 const VideoCard = ({ info }) => {
   if (!info) return null;
-  console.log(info);
   const { statistics, snippet, contentDetails } = info;
   const { title, channelTitle, thumbnails } = snippet;
   function formatViewCount(viewCount) {
@@ -113,12 +112,12 @@ const VideoCard = ({ info }) => {
 }
 const duration = contentDetails?.duration;
   return (
-    <div className="w-[350px] my-5 cursor-pointer">
-      <div className="relative h-[190px] w-[337.79px] -z-40 ">
+    <div className="w-[400.71px] my-5 cursor-pointer">
+      <div className="relative h-[224.84px] w-[399.79px] -z-40 ">
         <p
-        className=" h-[190px] w-[337.79px]  rounded-lg bg-cover "
-        style={{ backgroundImage: `url(${thumbnails.standard.url})` }}
-        ><span className="absolute mt-[10.1rem] ml-[18.6rem] bg-[rgba(0,0,0,0.8)] text-white text-[12px] font-semibold p-1">{formatYouTubeDuration(duration)}</span></p>
+        className=" h-[224.84px] w-[399.71px]  rounded-lg bg-cover "
+        style={{ backgroundImage: `url(${thumbnails.medium.url})` }}
+        ><span className="absolute mt-[12.1rem] ml-[22.4rem] bg-[rgba(0,0,0,0.8)] text-white text-[12px] font-semibold p-1 rounded-md">{formatYouTubeDuration(duration)}</span></p>
         
         {/* <img
           className="h-[190px] w-[254px] rounded-sm scale-100 -z-30 "
@@ -131,7 +130,7 @@ const duration = contentDetails?.duration;
         </div>
         <div className="relative h-[78px] w-[100%] flex flex-col z-30">
           <span className="h-[25px] text-lg font-bold overflow-hidden text-ellipsis">{title}</span>
-          <span className="text-sm text-gray-500" title={channelTitle}>
+          <span className="text-sm text-gray-500 mt-2" title={channelTitle}>
             {channelTitle}
           </span>
           <span className="text-sm text-gray-500">
