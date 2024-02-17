@@ -9,3 +9,5 @@ export const YT_YOU = "https://cdn-icons-png.flaticon.com/128/6020/6020269.png"
 
 
 export const QUERY_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
+
+export const RECOMMENDED_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=IN&videoCategoryId=1&key="

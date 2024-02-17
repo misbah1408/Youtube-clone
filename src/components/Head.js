@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { QUERY_API, UPLOAD_URL, YT_LOGO } from "./utils/Constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "./utils/appSlice";
+import { cacheResults } from "./utils/searchSlice";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSeggestions] = useState();
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchCache = useSelector((store) => store.search);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const timer = setTimeout(() => searchApi(), 200);
+    const timer = setTimeout(() => {
+    if (searchCache[searchQuery]){
+      setSeggestions(searchCache[searchQuery])
+    }else{
+      searchApi()
+    }}
+    , 200);
     return () => {
       clearTimeout(timer);
     };
@@ -19,15 +28,17 @@ const Head = () => {
     const data = await fetch(QUERY_API + searchQuery);
     const json = await data.json();
     setSeggestions(json[1])
+    dispatch(
+      cacheResults({ [searchQuery]: json[1] }));
   };
 
-  const dispatch = useDispatch();
+
   const handleToggle = () => {
     dispatch(toggleMenu());
   };
 
   return (
-    <div className="bg-white h-14 flex justify-between items-center">
+    <div className="fixed top-0 w-[100%] bg-white h-14 flex justify-between items-center z-50">
       <div className="flex ml-8 items-center gap-5">
         <span>
           <i
@@ -52,7 +63,7 @@ const Head = () => {
               onBlur={() => setShowSuggestions(false)} 
               placeholder="Search"
             />
-            {showSuggestions && <div className=" fixed bg-white w-[33.7rem] rounded-lg shadow-md shadow-[rgba(88,87,87,0.3)] z-40">
+            {showSuggestions && <div className=" fixed bg-white w-[33.7rem] rounded-lg shadow-md shadow-[rgba(88,87,87,0.3)] z-40 cursor-pointer">
               <ul>
                 {suggestions?.map((suggests, index)=> <li key={index} className="p-3 px-5 flex gap-4 items-center">
                   <i className="fa-solid fa-magnifying-glass text-sm mt-[6px] text-gray-500"></i>

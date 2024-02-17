@@ -1,14 +1,18 @@
-import React from 'react'
-import ButtonList from './ButtonList'
-import VideoContainer from './VideoContainer'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import ButtonList from './ButtonList';
+import VideoContainer from './VideoContainer';
 
 const MainContainer = () => {
-  return (
-    <div className='ml-12'>
-      <ButtonList/>
-      <VideoContainer/>
-    </div>
-  )
-}
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  const marginLeft = isMenuOpen ? 'ml-[15rem]' : 'ml-[5rem]';
 
-export default MainContainer
+  return (
+    <div className={` relative ${marginLeft} mt-10 bg-white z-20`}>
+      <ButtonList />
+      <VideoContainer />
+    </div>
+  );
+};
+
+export default MainContainer;

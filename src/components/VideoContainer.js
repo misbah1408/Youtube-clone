@@ -16,7 +16,7 @@ const VideoContainer = () => {
     }
     if (!videos) return null;
   return (
-    <div className='flex flex-wrap gap-4'>
+    <div className='relative z-10 flex flex-wrap gap-4'>
       {videos?.map((video)=> 
         <Link to={"watch?v=" + video?.id} key={video?.id}><VideoCard  info={video} /></Link>
       )}
