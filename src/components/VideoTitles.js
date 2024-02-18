@@ -1,14 +1,34 @@
-import React from "react";
-import useLikeCount from "../hooks/useLikeCount";
+import React, { useEffect, useState } from "react";
+import { formatViewCount } from "./utils/Functions";
 
 const VideoTitles = ({ info }) => {
-  var formattedLikeCount = useLikeCount(likeCount);
-  if (!info) return null;
-  const { statistics, snippet, contentDetails } = info;
+  const [channelData, setChannelData] = useState(null);
+
+  useEffect(() => {
+    const fetchChannelData = async () => {
+      try {
+        const response = await fetch(
+          `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${info?.snippet?.channelId}&key=${process.env.REACT_APP_YT_API_KEY}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch channel data");
+        }
+        const json = await response.json();
+        setChannelData(json?.items[0]);
+      } catch (error) {
+        console.error("Error fetching channel data:", error);
+      }
+    };
+
+    if (info) {
+      fetchChannelData();
+    }
+  }, [info]);
+
+  if (!info || !channelData) return null;
+
+  const { snippet } = info;
   const { title, channelTitle } = snippet;
-  var likeCount = statistics?.likeCount; // Use optional chaining to handle undefined statistics
-  // Call hook unconditionally
-  
 
   return (
     <div className="mt-3">
@@ -17,36 +37,19 @@ const VideoTitles = ({ info }) => {
       </span>
       <div className="h-14 flex mt-1 items-center justify-between">
         <div className="flex gap-3">
-          <span className="h-10 w-10 bg-gray-300 rounded-full"> </span>
-          <div className="">
+          <img className="h-10 w-10 rounded-full" src={channelData?.snippet?.thumbnails?.medium?.url} alt="tumbnail" />
+          <div className="flex flex-col">
             <span
               className="text-md text-black font-semibold"
               title={channelTitle}
             >
               {channelTitle}
             </span>
+            <span className="text-[13px] font-semibold text-gray-800">{formatViewCount(channelData?.statistics?.subscriberCount)} Subscribers</span>
           </div>
           <button className="bg-black text-white px-4 font-semibold pb-[3px] rounded-r-full rounded-l-full text-sm hover:bg-[rgba(0,0,0,0.85)]">
             Subscribe
           </button>
-        </div>
-        <div className="flex items-center gap-7 mr-2 cursor-pointer">
-          <div className="w-[88px] flex items-center gap-2 border-r-2 border-gray-300">
-            <img
-              className="h-6"
-              src="https://lh3.googleusercontent.com/v3qgnUEYaccG4Io_1X4EAjaWSOJ_Fckv-HuDhHHa4A-Yc9d9Y1pRRAQ_KK4lNNEk_2TF-CRLKhvTmzuwawe1vk7sbQ=s60"
-              alt=""
-            />
-            <span className="text-[16px] font-semibold">{formattedLikeCount}</span>
-          </div>
-          <img
-            className="h-6 rotate-180 "
-            src="https://lh3.googleusercontent.com/v3qgnUEYaccG4Io_1X4EAjaWSOJ_Fckv-HuDhHHa4A-Yc9d9Y1pRRAQ_KK4lNNEk_2TF-CRLKhvTmzuwawe1vk7sbQ=s60"
-            alt=""
-          />
-          <span className="flex gap-2 items-center"><img className="h-7 w-7" src="https://img.icons8.com/ios/50/forward-arrow.png" alt="forward-arrow"/><span className="text-[15px] font-semibold">Share</span></span>
-          <span className="flex items-center gap-2" ><i className="fa-solid fa-arrow-down text-[20px] text-gray-800 border-b-2 border-gray-800"></i><span className="font-semibold">Download</span></span>
-          <i className="fa-solid fa-ellipsis text-lg"></i>
         </div>
       </div>
     </div>

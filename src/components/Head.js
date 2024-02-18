@@ -3,6 +3,7 @@ import { QUERY_API, UPLOAD_URL, YT_LOGO } from "./utils/Constants";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "./utils/appSlice";
 import { cacheResults } from "./utils/searchSlice";
+import { Link } from "react-router-dom";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,8 +48,8 @@ const Head = () => {
           ></i>
         </span>
         <span className="relative z-10">
-          <img className="mix-blend-color-burn h-14 " src={YT_LOGO} alt="" />
-          <sub className="absolute mb-10 ml-[100px] ">IN</sub>
+          <a href="/"> <img className="mix-blend-color-burn h-14 " src={YT_LOGO} alt="" /></a>
+          <sub className="absolute mb-10 ml-[100px] ">IN</sub> 
         </span>
       </div>
       <div className="flex items-center gap-5 mr-2">
