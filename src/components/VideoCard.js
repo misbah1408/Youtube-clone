@@ -2,6 +2,7 @@ import React from "react";
 import { DUMMY_USER } from "./utils/Constants";
 import useTimeAgo from "../hooks/useTimeAgo";
 import { formatViewCount, formatYouTubeDuration } from "./utils/Functions";
+import ShimmerVideoCard from "./ShimmerVideoCard";
 
 const VideoCard = ({ info }) => {
   const { statistics, snippet, contentDetails } = info || {}; // Destructure info object conditionally
@@ -9,7 +10,18 @@ const VideoCard = ({ info }) => {
   const publishedAt = snippet?.publishedAt;
   const timeAgo = useTimeAgo(publishedAt); // Call hook unconditionally
   const duration = statistics?.viewCount;
-  if (!info) return null;
+  if (!info) return (
+    <div className='relative z-10 flex flex-wrap gap-4'>
+      <ShimmerVideoCard/>
+      <ShimmerVideoCard/>
+      <ShimmerVideoCard/>
+      <ShimmerVideoCard/>
+      <ShimmerVideoCard/>
+      <ShimmerVideoCard/>
+      <ShimmerVideoCard/>
+      <ShimmerVideoCard/>
+    </div>
+  )
 
   return (
     <div className="w-[400.71px] my-5 cursor-pointer">

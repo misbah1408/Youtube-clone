@@ -3,9 +3,8 @@ import { QUERY_API, UPLOAD_URL, YT_LOGO } from "./utils/Constants";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "./utils/appSlice";
 import { cacheResults } from "./utils/searchSlice";
-import { Link } from "react-router-dom";
 
-const Head = () => {
+const Head = ({setProgress}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSeggestions] = useState();
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -24,6 +23,15 @@ const Head = () => {
       clearTimeout(timer);
     };
   }, [searchQuery]);
+  useEffect(() => {
+
+    setProgress(30);
+    
+    setTimeout(() => {
+      setProgress(100);
+    }, 2000);
+  }, []);
+  
 
   const searchApi = async () => {
     const data = await fetch(QUERY_API + searchQuery);
@@ -39,6 +47,7 @@ const Head = () => {
   };
 
   return (
+    <>
     <div className="fixed top-0 w-[100%] bg-white h-14 flex justify-between items-center z-50">
       <div className="flex ml-8 items-center gap-5">
         <span>
@@ -87,6 +96,7 @@ const Head = () => {
         <i className="fa-regular fa-user text-xl"></i>
       </div>
     </div>
+    </>
   );
 };
 

@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import { closeMenu } from "./utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import VideoTitles from "./VideoTitles";
-import { YT_API } from "./utils/Constants";
 import CommentsContainer from "./CommentsContainer";
 
-const WatchPageContent = () => {
+const WatchPageContent = ({setProgress}) => {
     const [searchParams] = useSearchParams();
     const [videosInfo, setVideosInfo] = useState();
     const videoID = searchParams.get("v");
@@ -26,6 +25,13 @@ const WatchPageContent = () => {
         fetchVideos();
         dispatch(closeMenu());
     }, [videoID]); 
+
+    useEffect(()=>{
+        setProgress(35);
+        setTimeout(() => {
+          setProgress(100);
+        }, 2000);
+      },[videoID])
 
     return (
         <div className="w-[913px] mt-6 ml-[5px] rounded-md ">
