@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const NestedComments = ({replies}) => {
     const isReplyOpen = useSelector((store)=>store.app.isReplyOpen);
-    if(!isReplyOpen) return null;
+    if(isReplyOpen) return null;
     console.log(replies)
     const { snippet } = replies;
     const {

@@ -1,14 +1,12 @@
 import React from "react";
 import { DUMMY_USER } from "./utils/Constants";
-import useTimeAgo from "../hooks/useTimeAgo";
-import { formatViewCount, formatYouTubeDuration } from "./utils/Functions";
+import { formatTimeAgo, formatViewCount, formatYouTubeDuration } from "./utils/Functions";
 import ShimmerVideoCard from "./ShimmerVideoCard";
 
 const VideoCard = ({ info }) => {
   const { statistics, snippet, contentDetails } = info || {}; // Destructure info object conditionally
   const { title, channelTitle, thumbnails } = snippet || {};
   const publishedAt = snippet?.publishedAt;
-  const timeAgo = useTimeAgo(publishedAt); // Call hook unconditionally
   const duration = statistics?.viewCount;
   if (!info) return (
     <div className='relative z-10 flex flex-wrap gap-4'>
@@ -45,7 +43,7 @@ const VideoCard = ({ info }) => {
             {channelTitle}
           </span>
           <span className="text-sm text-gray-500">
-            {formatViewCount(duration)} views · {timeAgo}
+            {formatViewCount(duration)} views · {formatTimeAgo(publishedAt)}
           </span>
         </div>
       </div>

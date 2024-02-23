@@ -39,10 +39,10 @@ const WatchPageContent = ({setProgress}) => {
                 className="rounded-xl"
                 width="913"
                 height="513"
-                src={"https://www.youtube.com/embed/" + videoID}
+                src={"https://www.youtube.com/embed/" + videoID +"?autoplay=1"}
                 title="YouTube video player"
                 frameBorder="0"
-                allow="clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="clipboard-write;autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen>
             </iframe>
             <VideoTitles info={videosInfo} />

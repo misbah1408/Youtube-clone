@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Comments = ({ commentMap }) => {
   const [nestedComments, setNestedComments] = useState([]);
   const isReplyOpen = useSelector((store) => store.app.isReplyOpen);
-  const rotate = !isReplyOpen ? "down" : "up";
+  const rotate = isReplyOpen ? "down" : "up";
   const dispatch = useDispatch();
   const handleReply = () => {
     dispatch(toggleReply());
@@ -81,7 +81,7 @@ const Comments = ({ commentMap }) => {
           <div className="flex flex-col">
             <div
               onClick={handleReply}
-              className="ml-6 mt-1 flex items-center gap-1 hover:bg-blue-100 px-5 w-max p-2 rounded-l-full rounded-r-full text-blue-600"
+              className="ml- mt-1 flex items-center gap-1 hover:bg-blue-100 px-5 w-max p-2 rounded-l-full rounded-r-full text-blue-600"
             >
               <i className={`fa-solid fa-caret-${rotate} text-[13px]`}></i>
               <span className="ml-1 text-[13px] font-semibold">
