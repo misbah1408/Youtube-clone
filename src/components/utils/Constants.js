@@ -13,3 +13,4 @@ export const QUERY_API = "http://suggestqueries.google.com/complete/search?clien
 export const RECOMMENDED_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=IN&videoCategoryId=1&key="
 
 export const CHAT_COUNT = 50;
+export const SIDEBAR_LI="flex items-center gap-4 text-sm hover:bg-gray-200 rounded-lg p-2"

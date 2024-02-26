@@ -22,7 +22,7 @@ const VideoCard = ({ info }) => {
   )
 
   return (
-    <div className="w-[400.71px] my-5 cursor-pointer">
+    <div className="w-[400.71px] mt-5 cursor-pointer">
       <div className="relative h-[224.84px] w-[399.79px] -z-40 ">
         <p
           className=" h-[224.84px] w-[399.71px]  rounded-lg bg-cover "
@@ -37,9 +37,9 @@ const VideoCard = ({ info }) => {
         <div>
           <img className="h-[36px] w-[43px] rounded-full" src={DUMMY_USER} alt="" />
         </div>
-        <div className="relative h-[78px] w-[100%] flex flex-col z-30">
-          <span className="h-[25px] text-lg font-bold overflow-hidden text-ellipsis">{title}</span>
-          <span className="text-sm text-gray-500 mt-2" title={channelTitle}>
+        <div className="relative h-[100%] w-[100%] flex flex-col z-30">
+          <span className="text-sm h-[40px] font-semibold overflow-hidden text-ellipsis">{title}</span>
+          <span className="text-sm text-gray-500" title={channelTitle}>
             {channelTitle}
           </span>
           <span className="text-sm text-gray-500">

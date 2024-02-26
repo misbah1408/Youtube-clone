@@ -14,6 +14,8 @@ import LoadingBar from "react-top-loading-bar";
 import { useState } from "react";
 import LiveContainer from "./components/LiveContainer";
 import SearchContainer from "./components/SearchContainer";
+import Subscription from "./components/Subscription";
+import Shorts from "./components/Shorts";
 
 function App() {
   const [progress, setProgress] = useState(0);
@@ -25,6 +27,8 @@ function App() {
         <Route path="watch" element={ <WatchPage setProgress={setProgress}  />}/>
         <Route path="live" element={ <LiveContainer setProgress={setProgress} />}/>
         <Route path="search" element={ <SearchContainer />}/>
+        <Route path="subscription" element={<Subscription setProgress={setProgress}/>}/>
+        <Route path="shorts" element={<Shorts setProgress={setProgress}/>}/>
       </Route>
     )
   );
